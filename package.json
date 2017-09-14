@@ -1,0 +1,29 @@
+{
+  "name": "extauth",
+  "version": "0.0.1-alpha",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava",
+    "ava": "ava",
+    "coverage": "nyc --reporter=html ava"
+  },
+  "author": "Alexey Kheben",
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^0.18.2",
+    "eslint": "^3.16.1",
+    "eslint-config-google": "^0.7.1",
+    "nyc": "^10.1.2"
+  },
+  "ava": {
+    "files": [
+      "tests/*.spec.js"
+    ],
+    "concurrency": 1,
+    "failFast": true,
+    "tap": true,
+    "powerAssert": false,
+    "require": []
+  }
+}

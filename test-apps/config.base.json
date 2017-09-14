@@ -1,0 +1,12 @@
+{
+  "vk": {
+    "clientId": "00000000",
+    "clientSecret": "AAAAAAAAAAAAAAAAAAAA",
+    "redirectUri": "http://localhost:3000/auth/vk/callback"
+  },
+  "google": {
+    "clientId": "000000000000-fff.apps.googleusercontent.com",
+    "clientSecret": "AAAAAAAAAAAAAAAAAAAAAAAA",
+    "redirectUri": "http://localhost:3000/auth/google/callback"
+  }
+}
