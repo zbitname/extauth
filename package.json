@@ -1,7 +1,7 @@
 {
   "name": "extauth",
-  "version": "0.0.2-alpha",
-  "description": "",
+  "version": "0.0.3-alpha",
+  "description": "This module is simpliest alternative for authorize by external providers",
   "main": "index.js",
   "scripts": {
     "test": "ava",
@@ -25,5 +25,15 @@
     "tap": true,
     "powerAssert": false,
     "require": []
-  }
+  },
+  "keywords": [
+    "oauth",
+    "oauth2",
+    "auth",
+    "authentication",
+    "vk",
+    "google",
+    "alternative",
+    "passport"
+  ]
 }
