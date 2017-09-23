@@ -84,6 +84,10 @@ class OAuth2BaseProvider {
   getProviderName() {
     return this._providerName;
   }
+
+  getUserName() {
+    throw new Error('getUserName not implemented');
+  }
 }
 
 module.exports = OAuth2BaseProvider;

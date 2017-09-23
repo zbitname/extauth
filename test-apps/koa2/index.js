@@ -22,7 +22,10 @@ auth.setSignInFunc(async function() {
 
   if (!user) {
     this.isNew(true); // eslint-disable-line no-invalid-this
-    user = User.create(condition);
+
+    const name = await this.getUserName();
+
+    user = User.create(Object.assign({name}, condition));
   } else {
     this.isNew(false); // eslint-disable-line no-invalid-this
   }

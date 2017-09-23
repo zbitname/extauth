@@ -24,6 +24,7 @@ class GoogleAuthProvider extends OAuth2BaseProvider {
     super(options, auth);
 
     this._providerName = providerName;
+    this._profileInfo = null;
   }
 
   /**
@@ -130,8 +131,14 @@ class GoogleAuthProvider extends OAuth2BaseProvider {
     }).then(data => {
       this._userId = data.id;
 
+      this._profileInfo = data;
+
       return this._userId;
     });
+  }
+
+  async getUserName() {
+    return {firstName: this._profileInfo.name.givenName, lastName: this._profileInfo.name.familyName};
   }
 }
 

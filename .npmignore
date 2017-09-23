@@ -1,6 +1,6 @@
 node_modules
 .vscode
 test-apps
-test
+tests
 coverage
 .nyc_output
