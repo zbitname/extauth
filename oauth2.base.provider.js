@@ -9,7 +9,7 @@ class OAuth2BaseProvider {
    *
    * @param {object} [options={clientId, clientSecret}]
    * @param {Auth} auth Instance of Auth class
-   *
+   * @constructor
    * @memberOf OAuth2BaseProvider
    */
   constructor(options, auth) {
@@ -27,7 +27,7 @@ class OAuth2BaseProvider {
    * Exchange code to access token
    *
    * @param {string} code Code received after authorize user
-   *
+   * @abstract
    * @memberOf OAuth2BaseProvider
    */
   exchangeCodeToAccessToken(code) {
@@ -38,7 +38,6 @@ class OAuth2BaseProvider {
    * Sign in user by external provider in your app.
    *
    * @return {Promise|any}
-   *
    * @memberOf OAuth2BaseProvider
    */
   signIn() {
@@ -52,7 +51,6 @@ class OAuth2BaseProvider {
    *
    * @param {boolean} v If argument is exists then this method set value, else get value.
    * @return {boolean}
-   *
    * @memberOf OAuth2BaseProvider
    */
   isNew(v) {
@@ -65,9 +63,8 @@ class OAuth2BaseProvider {
 
   /**
    * Get user id. Before call this method must be set this._userId by your provider.
-   *
+   * 
    * @return {Promise}
-   *
    * @memberOf OAuth2BaseProvider
    */
   getUserId() {
@@ -76,15 +73,21 @@ class OAuth2BaseProvider {
 
   /**
    * Get provider name.
-   *
+   * 
    * @return {string}
-   *
    * @memberOf OAuth2BaseProvider
    */
   getProviderName() {
     return this._providerName;
   }
 
+  
+  /**
+   * Must return Object({firstName: String|null, lastName: String|null})
+   * 
+   * @abstract
+   * @memberof OAuth2BaseProvider
+   */
   getUserName() {
     throw new Error('getUserName not implemented');
   }

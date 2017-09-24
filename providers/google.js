@@ -15,9 +15,10 @@ const providerName = 'google';
 class GoogleAuthProvider extends OAuth2BaseProvider {
   /**
    * Creates an instance of GoogleAuthProvider.
+   * 
    * @param {Object} options
    * @param {Auth} auth Instance of Auth class
-   *
+   * @constructor
    * @memberOf GoogleAuthProvider
    */
   constructor(options, auth) {
@@ -31,8 +32,7 @@ class GoogleAuthProvider extends OAuth2BaseProvider {
    * Exchange code to access token
    *
    * @param {string} code Code received after authorize user
-   * @return {Promise}
-   *
+   * @return {Promise<Object>}
    * @memberOf GoogleAuthProvider
    */
   exchangeCodeToAccessToken(code) {
@@ -92,7 +92,6 @@ class GoogleAuthProvider extends OAuth2BaseProvider {
    * Returns user id from provider
    *
    * @return {Promise<string>} User id
-   *
    * @memberOf GoogleAuthProvider
    */
   async getUserId() {
@@ -137,27 +136,45 @@ class GoogleAuthProvider extends OAuth2BaseProvider {
     });
   }
 
+  /**
+   * User first name and last name
+   * 
+   * @typedef {Object} UserName
+   * @property {string|null} firstName First name of user
+   * @property {string|null} lastName Last name of user
+   * 
+   * @returns {Promise<UserName>}
+   * @memberof VkAuthProvider
+   */
   async getUserName() {
     return {firstName: this._profileInfo.name.givenName, lastName: this._profileInfo.name.familyName};
+  }
+
+  /**
+   * Make url for autorization
+   * 
+   * @static
+   * @param {Object} [options={}] 
+   * @returns {string} URL
+   * @memberof GoogleAuthProvider
+   */
+  static getAuthUrl(options = {}) {
+    const authBaseUrl = {
+      protocol: 'https',
+      host: 'accounts.google.com',
+      pathname: 'o/oauth2/v2/auth',
+      query: {
+        client_id: options.clientId,
+        redirect_uri: options.redirectUri,
+        response_type: 'code',
+        scope: options.scope || defaultScope
+      }
+    };
+  
+    return url.format(authBaseUrl);
   }
 }
 
 GoogleAuthProvider.providerName = providerName;
-
-GoogleAuthProvider.getAuthUrl = options => {
-  const authBaseUrl = {
-    protocol: 'https',
-    host: 'accounts.google.com',
-    pathname: 'o/oauth2/v2/auth',
-    query: {
-      client_id: options.clientId,
-      redirect_uri: options.redirectUri,
-      response_type: 'code',
-      scope: options.scope || defaultScope
-    }
-  };
-
-  return url.format(authBaseUrl);
-};
 
 module.exports = GoogleAuthProvider;
