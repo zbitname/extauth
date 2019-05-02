@@ -4,3 +4,8 @@ test-apps
 tests
 coverage
 .nyc_output
+.editorconfig
+.eslintrc.json
+.gitignore
+.npmignore
+.nycrc
