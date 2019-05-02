@@ -1,6 +1,6 @@
 {
   "name": "extauth",
-  "version": "0.0.3-alpha",
+  "version": "0.0.4-alpha",
   "description": "This module is simpliest alternative for authorize by external providers",
   "main": "index.js",
   "scripts": {
@@ -35,5 +35,15 @@
     "google",
     "alternative",
     "passport"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zbitname/extauth"
+  },
+  "bugs": {
+    "url": "https://github.com/zbitname/extauth/issues"
+  },
+  "engines" : {
+    "node": ">=6.0.0"
+  }
 }

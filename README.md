@@ -20,10 +20,10 @@ See examples from `test` apps for chosen by you or similar framework.
 ### Test app examples
 ```bash
 # FRAMEWORK_NAME = any (koa2)
-cd test-apps/$FRAMEWORK_NAME
+cd test-apps/${FRAMEWORK_NAME}
 npm start
 ```
-and go to page `http://localhost:3000/auth/{providerName}`
+and go to page `http://localhost:3000/auth/${providerName}`
 where providerName = any (vk, google)
 
 ### Automated tests

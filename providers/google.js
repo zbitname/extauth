@@ -15,7 +15,7 @@ const providerName = 'google';
 class GoogleAuthProvider extends OAuth2BaseProvider {
   /**
    * Creates an instance of GoogleAuthProvider.
-   * 
+   *
    * @param {Object} options
    * @param {Auth} auth Instance of Auth class
    * @constructor
@@ -138,11 +138,11 @@ class GoogleAuthProvider extends OAuth2BaseProvider {
 
   /**
    * User first name and last name
-   * 
+   *
    * @typedef {Object} UserName
    * @property {string|null} firstName First name of user
    * @property {string|null} lastName Last name of user
-   * 
+   *
    * @returns {Promise<UserName>}
    * @memberof VkAuthProvider
    */
@@ -152,9 +152,9 @@ class GoogleAuthProvider extends OAuth2BaseProvider {
 
   /**
    * Make url for autorization
-   * 
+   *
    * @static
-   * @param {Object} [options={}] 
+   * @param {Object} [options={}]
    * @returns {string} URL
    * @memberof GoogleAuthProvider
    */
@@ -170,7 +170,7 @@ class GoogleAuthProvider extends OAuth2BaseProvider {
         scope: options.scope || defaultScope
       }
     };
-  
+
     return url.format(authBaseUrl);
   }
 }

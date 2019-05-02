@@ -63,7 +63,7 @@ class OAuth2BaseProvider {
 
   /**
    * Get user id. Before call this method must be set this._userId by your provider.
-   * 
+   *
    * @return {Promise}
    * @memberOf OAuth2BaseProvider
    */
@@ -73,7 +73,7 @@ class OAuth2BaseProvider {
 
   /**
    * Get provider name.
-   * 
+   *
    * @return {string}
    * @memberOf OAuth2BaseProvider
    */
@@ -81,10 +81,10 @@ class OAuth2BaseProvider {
     return this._providerName;
   }
 
-  
+
   /**
    * Must return Object({firstName: String|null, lastName: String|null})
-   * 
+   *
    * @abstract
    * @memberof OAuth2BaseProvider
    */

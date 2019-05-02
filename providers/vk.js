@@ -8,9 +8,9 @@ const PROVIDER_NAME = 'vk';
 
 /**
  * Make GET request
- * 
+ *
  * @param {string} URL
- * @returns 
+ * @returns
  */
 function getRequest(url) {
   return new Promise((resolve, reject) => {
@@ -20,7 +20,7 @@ function getRequest(url) {
       res.on('data', chunk => {
         data += chunk.toString();
       });
-  
+
       res.once('end', () => {
         try {
           resolve(JSON.parse(data));
@@ -43,7 +43,7 @@ function getRequest(url) {
 class VkAuthProvider extends OAuth2BaseProvider {
   /**
    * Creates an instance of VkAuthProvider
-   * 
+   *
    * @param {any} options
    * @param {any} auth Instance of Auth class
    * @constructor
@@ -94,7 +94,7 @@ class VkAuthProvider extends OAuth2BaseProvider {
 
   /**
    * Maker requset to {@link https://vk.com/dev/users.get|VK dev docs} and return {@link https://vk.com/dev/objects/user|User object}
-   * 
+   *
    * @private
    * @returns {Promise<Object>}
    * @memberof VkAuthProvider
@@ -108,20 +108,20 @@ class VkAuthProvider extends OAuth2BaseProvider {
     const res = await getRequest(urlStr);
 
     const profile = res.response[0];
-    
+
     this._profileInfo = profile;
 
     return this._profileInfo;
   }
 
-  
+
   /**
    * User first name and last name
-   * 
+   *
    * @typedef {Object} UserName
    * @property {string|null} firstName First name of user
    * @property {string|null} lastName Last name of user
-   * 
+   *
    * @returns {Promise<UserName>}
    * @memberof VkAuthProvider
    */
@@ -134,12 +134,12 @@ class VkAuthProvider extends OAuth2BaseProvider {
   }
 
   /**
-   * 
-   * 
+   *
+   *
    * @param {boolean} accessTokenIsNeeded If access token is needed then request makes with Authorization header
    * @param {string} method One of https://vk.com/dev/methods
-   * @param {Object} [options={}] 
-   * 
+   * @param {Object} [options={}]
+   *
    * @private
    * @returns {Array|Object} response from VK API
    * @memberof VkAuthProvider
@@ -161,13 +161,13 @@ class VkAuthProvider extends OAuth2BaseProvider {
 
       urlObj.query.access_token = this._accessToken;
     }
-  
+
     return url.format(urlObj);
   }
 
   /**
    * Make url for autorization
-   * 
+   *
    * @static
    * @param {Object} [options={}]
    * @returns {string} URL
@@ -187,7 +187,7 @@ class VkAuthProvider extends OAuth2BaseProvider {
         v: '5.68'
       }
     };
-  
+
     return url.format(authBaseUrl);
   }
 }
