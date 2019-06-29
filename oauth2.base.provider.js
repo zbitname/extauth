@@ -1,4 +1,15 @@
 /**
+ * @typedef OAuth2BaseProviderOptions
+ * @property {string} clientId
+ * @property {string} clientSecret
+ * @property {string} redirectUri
+ */
+
+/**
+ * @typedef {import('./index')} Auth
+ */
+
+/**
  * Base provider
  *
  * @class OAuth2BaseProvider
@@ -7,7 +18,7 @@ class OAuth2BaseProvider {
   /**
    * Creates an instance of OAuth2BaseProvider.
    *
-   * @param {object} [options={clientId, clientSecret}]
+   * @param {OAuth2BaseProviderOptions} [options={clientId, clientSecret}]
    * @param {Auth} auth Instance of Auth class
    * @constructor
    * @memberOf OAuth2BaseProvider
@@ -37,7 +48,7 @@ class OAuth2BaseProvider {
   /**
    * Sign in user by external provider in your app.
    *
-   * @return {Promise|any}
+   * @returns {Promise|any}
    * @memberOf OAuth2BaseProvider
    */
   signIn() {
@@ -50,7 +61,7 @@ class OAuth2BaseProvider {
    * This method help determine user is new or already existed user in your app.
    *
    * @param {boolean} v If argument is exists then this method set value, else get value.
-   * @return {boolean}
+   * @returns {boolean}
    * @memberOf OAuth2BaseProvider
    */
   isNew(v) {
@@ -64,7 +75,7 @@ class OAuth2BaseProvider {
   /**
    * Get user id. Before call this method must be set this._userId by your provider.
    *
-   * @return {Promise}
+   * @returns {Promise}
    * @memberOf OAuth2BaseProvider
    */
   getUserId() {
@@ -74,7 +85,7 @@ class OAuth2BaseProvider {
   /**
    * Get provider name.
    *
-   * @return {string}
+   * @returns {string}
    * @memberOf OAuth2BaseProvider
    */
   getProviderName() {
@@ -92,5 +103,7 @@ class OAuth2BaseProvider {
     throw new Error('getUserName not implemented');
   }
 }
+
+/** @module OAuth2BaseProvider */
 
 module.exports = OAuth2BaseProvider;

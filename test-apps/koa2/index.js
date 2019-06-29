@@ -4,6 +4,7 @@ const route = require('koa-route');
 const {Auth} = require('../../');
 const VkAuthProvider = require('../../providers/vk');
 const GoogleAuthProvider = require('../../providers/google');
+const TwichAuthProvider = require('../../providers/twich');
 const db = require('../../tests/helpers/db');
 const config = require('../config.json');
 
@@ -36,6 +37,7 @@ auth.setSignInFunc(async function() {
 // register providers
 auth.registerProvider(VkAuthProvider, config.vk);
 auth.registerProvider(GoogleAuthProvider, config.google);
+auth.registerProvider(TwichAuthProvider, config.twich);
 
 // responses
 // methods for redirect to auth page
@@ -51,6 +53,7 @@ const handleAuthorize = providerName => {
 
 app.use(route.get('/auth/vk', handleAuthorize('vk')));
 app.use(route.get('/auth/google', handleAuthorize('google')));
+app.use(route.get('/auth/twich', handleAuthorize('twich')));
 
 // methods for callback with code
 const handleCallback = providerName => {
@@ -77,5 +80,6 @@ const handleCallback = providerName => {
 
 app.use(route.get('/auth/vk/callback', handleCallback('vk')));
 app.use(route.get('/auth/google/callback', handleCallback('google')));
+app.use(route.get('/auth/twich/callback', handleCallback('twich')));
 
 app.listen(3000);

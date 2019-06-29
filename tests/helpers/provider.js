@@ -27,7 +27,7 @@ class TestAuthProvider extends OAuth2BaseProvider {
    * Exchange code to access token
    *
    * @param {string} code Code received after authorize user
-   * @return {Promise}
+   * @returns {Promise}
    *
    * @memberOf GoogleAuthProvider
    */

@@ -1,6 +1,14 @@
 const ProviderError = require('./errors/ProviderError');
 
 /**
+ * @typedef {import('./oauth2.base.provider').OAuth2BaseProviderOptions} OAuth2BaseProviderOptions
+ */
+
+/**
+ * @typedef {import('./oauth2.base.provider')} OAuth2BaseProvider
+ */
+
+/**
  * Main class of this module
  *
  * @class Auth
@@ -20,7 +28,8 @@ class Auth {
    * Register the some provider
    *
    * @param {OAuth2BaseProvider} Provider
-   * @param {Object} options
+   * @param {OAuth2BaseProviderOptions} options
+   * @returns {void}
    *
    * @memberOf Auth
    */
@@ -32,6 +41,7 @@ class Auth {
    * Sign in function setter
    *
    * @param {function} fnc
+   * @returns {void}
    *
    * @memberOf Auth
    */
@@ -42,7 +52,7 @@ class Auth {
   /**
    * Sign in function getter
    *
-   * @return {function}
+   * @returns {function}
    *
    * @memberOf Auth
    */
@@ -54,7 +64,7 @@ class Auth {
    * Create provider instance
    *
    * @param {string} providerName Name of provider
-   * @return {OAuth2BaseProvider} Instance of provider class extends OAuth2BaseProvider
+   * @returns {OAuth2BaseProvider} Instance of provider class extends OAuth2BaseProvider
    *
    * @memberOf Auth
    */
@@ -68,7 +78,7 @@ class Auth {
    * Returns link to authorize user
    *
    * @param {string} providerName Name of provider
-   * @return {OAuth2BaseProvider} Instance of provider class extends OAuth2BaseProvider
+   * @returns {string} URL for redirect for auth
    *
    * @memberOf Auth
    */

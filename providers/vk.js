@@ -44,13 +44,11 @@ class VkAuthProvider extends OAuth2BaseProvider {
   /**
    * Creates an instance of VkAuthProvider
    *
-   * @param {any} options
-   * @param {any} auth Instance of Auth class
    * @constructor
    * @memberOf VkAuthProvider
    */
-  constructor(options, auth) {
-    super(options, auth);
+  constructor(...args) {
+    super(...args);
 
     this._providerName = PROVIDER_NAME;
     this._profileInfo = null;
@@ -60,7 +58,7 @@ class VkAuthProvider extends OAuth2BaseProvider {
    * Exchange code to access token
    *
    * @param {string} code Code received after authorize user
-   * @return {Promise<Object>}
+   * @returns {Promise<Object>}
    *
    * @memberOf GoogleAuthProvider
    */
