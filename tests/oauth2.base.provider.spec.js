@@ -24,8 +24,11 @@ test('OAuth2BaseProvider.getUserId', t => {
   auth.registerProvider(BaseProvider, providerOptions);
   const provider = auth.getProvider(BaseProvider.providerName);
 
+  t.is(provider instanceof BaseProvider, true);
+
   provider.getUserId().then(userId => {
-    assert.equal(userId, null);
+    t.is(userId, null);
+
     t.pass();
   });
 });
@@ -37,10 +40,10 @@ test('OAuth2BaseProvider.isNew', t => {
 
   auth.setSignInFunc(function() {
     this.isNew(true); // eslint-disable-line no-invalid-this
-    assert.equal(provider.isNew(), true);
+    t.is(provider.isNew(), true);
 
     this.isNew(false); // eslint-disable-line no-invalid-this
-    assert.equal(provider.isNew(), false);
+    t.is(provider.isNew(), false);
 
     t.pass();
   });
@@ -53,5 +56,6 @@ test('OAuth2BaseProvider.getProviderName', t => {
   auth.registerProvider(BaseProvider, providerOptions);
   const provider = auth.getProvider(BaseProvider.providerName);
 
-  assert.equal(provider.getProviderName(), 'undefined');
+  t.is(provider.getProviderName(), 'undefined');
+  t.pass();
 });

@@ -33,7 +33,7 @@ class TestAuthProvider extends OAuth2BaseProvider {
    */
   exchangeCodeToAccessToken(code) {
     return new Promise((resolve, reject) => {
-      let data = {
+      const data = {
         access_token: 'test_access_token',
         expires_in: 3600,
         user_id: 3
