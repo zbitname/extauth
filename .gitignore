@@ -3,3 +3,4 @@ node_modules
 .vscode
 .nyc_output
 test-apps/config.json
+package-lock.json

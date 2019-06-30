@@ -1,6 +1,6 @@
 {
   "name": "extauth",
-  "version": "0.1.0-alpha",
+  "version": "0.1.1-alpha",
   "description": "This module is simpliest alternative for authorize by external providers",
   "main": "index.js",
   "scripts": {
@@ -46,6 +46,6 @@
     "url": "https://github.com/zbitname/extauth/issues"
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=7.6.0"
   }
 }
