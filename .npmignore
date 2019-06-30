@@ -9,5 +9,6 @@ coverage
 .eslintignore
 .gitignore
 .npmignore
+.npmrc
 .nycrc
 .travis.yml

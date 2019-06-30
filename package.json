@@ -46,6 +46,6 @@
     "url": "https://github.com/zbitname/extauth/issues"
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=7.6.0"
   }
 }
