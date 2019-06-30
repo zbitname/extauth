@@ -1,6 +1,6 @@
 {
   "name": "extauth",
-  "version": "0.1.2-alpha",
+  "version": "0.1.3-alpha",
   "description": "This module is simpliest alternative for authorize by external providers",
   "main": "index.js",
   "scripts": {
