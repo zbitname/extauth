@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-  - "6"
-  - "7"
+  # - "6" # not supported
+  # - "7" # not supported
   - "8"
   - "9"
   - "10"
