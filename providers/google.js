@@ -30,7 +30,7 @@ class GoogleAuthProvider extends OAuth2BaseProvider {
    * Exchange code to access token
    *
    * @param {string} code Code received after authorize user
-   * @returns {Promise<Object>}
+   * @return {Promise<Object>}
    * @memberOf GoogleAuthProvider
    */
   exchangeCodeToAccessToken(code) {
@@ -89,7 +89,7 @@ class GoogleAuthProvider extends OAuth2BaseProvider {
   /**
    * Returns user id from provider
    *
-   * @returns {Promise<string>} User id
+   * @return {Promise<string>} User id
    * @memberOf GoogleAuthProvider
    */
   async getUserId() {
@@ -141,7 +141,7 @@ class GoogleAuthProvider extends OAuth2BaseProvider {
    * @property {string|null} firstName First name of user
    * @property {string|null} lastName Last name of user
    *
-   * @returns {Promise<UserName>}
+   * @return {Promise<UserName>}
    * @memberof VkAuthProvider
    */
   async getUserName() {
@@ -153,7 +153,7 @@ class GoogleAuthProvider extends OAuth2BaseProvider {
    *
    * @static
    * @param {Object} [options={}]
-   * @returns {string} URL
+   * @return {string} URL
    * @memberof GoogleAuthProvider
    */
   static getAuthUrl(options = {}) {

@@ -24,7 +24,7 @@ auth.setSignInFunc(async function() {
   if (!user) {
     this.isNew(true); // eslint-disable-line no-invalid-this
 
-    const name = await this.getUserName();
+    const name = await this.getUserName(); // eslint-disable-line no-invalid-this
 
     user = User.create(Object.assign({name}, condition));
   } else {
@@ -63,12 +63,14 @@ const handleCallback = providerName => {
     try {
       await provider.exchangeCodeToAccessToken(ctx.request.query.code);
     } catch (e) {
+      // eslint-disable-next-line require-atomic-updates
       ctx.body = {error: e};
       return;
     }
 
     const user = await provider.signIn();
 
+    // eslint-disable-next-line require-atomic-updates
     ctx.body = {
       provider: provider.getProviderName(),
       userId: await provider.getUserId(),

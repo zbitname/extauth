@@ -30,7 +30,7 @@ class TwichAuthProvider extends OAuth2BaseProvider {
    * Exchange code to access token
    *
    * @param {string} code Code received after authorize user
-   * @returns {Promise<Object>}
+   * @return {Promise<Object>}
    * @memberOf TwichAuthProvider
    */
   exchangeCodeToAccessToken(code) {
@@ -46,6 +46,7 @@ class TwichAuthProvider extends OAuth2BaseProvider {
       const options = {
         hostname: 'id.twitch.tv',
         port: 443,
+        // eslint-disable-next-line max-len
         path: `/oauth2/token?client_id=${this._options.clientId}&client_secret=${this._options.clientSecret}&code=${code}&grant_type=authorization_code&redirect_uri=${this._options.redirectUri}`,
         method: 'POST'
       };
@@ -86,7 +87,7 @@ class TwichAuthProvider extends OAuth2BaseProvider {
   /**
    * Returns user id from provider
    *
-   * @returns {Promise<string>} User id
+   * @return {Promise<string>} User id
    * @memberOf TwichAuthProvider
    */
   async getUserId() {
@@ -105,7 +106,7 @@ class TwichAuthProvider extends OAuth2BaseProvider {
         headers: {
           'Authorization': `OAuth ${this._accessToken}`,
           'Client-ID': this._options.clientId,
-          Accept: 'application/vnd.twitchtv.v5+json'
+          'Accept': 'application/vnd.twitchtv.v5+json'
         }
       }, res => {
         res.on('data', chunk => {
@@ -140,7 +141,7 @@ class TwichAuthProvider extends OAuth2BaseProvider {
    * @property {string|null} firstName First name of user
    * @property {string|null} lastName Last name of user
    *
-   * @returns {Promise<UserName>}
+   * @return {Promise<UserName>}
    * @memberof VkAuthProvider
    */
   async getUserName() {
@@ -152,7 +153,7 @@ class TwichAuthProvider extends OAuth2BaseProvider {
    *
    * @static
    * @param {Object} [options={}]
-   * @returns {string} URL
+   * @return {string} URL
    * @memberof TwichAuthProvider
    */
   static getAuthUrl(options = {}) {

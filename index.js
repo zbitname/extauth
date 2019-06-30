@@ -29,7 +29,7 @@ class Auth {
    *
    * @param {OAuth2BaseProvider} Provider
    * @param {OAuth2BaseProviderOptions} options
-   * @returns {void}
+   * @return {void}
    *
    * @memberOf Auth
    */
@@ -41,7 +41,7 @@ class Auth {
    * Sign in function setter
    *
    * @param {function} fnc
-   * @returns {void}
+   * @return {void}
    *
    * @memberOf Auth
    */
@@ -52,7 +52,7 @@ class Auth {
   /**
    * Sign in function getter
    *
-   * @returns {function}
+   * @return {function}
    *
    * @memberOf Auth
    */
@@ -64,7 +64,7 @@ class Auth {
    * Create provider instance
    *
    * @param {string} providerName Name of provider
-   * @returns {OAuth2BaseProvider} Instance of provider class extends OAuth2BaseProvider
+   * @return {OAuth2BaseProvider} Instance of provider class extends OAuth2BaseProvider
    *
    * @memberOf Auth
    */
@@ -78,7 +78,7 @@ class Auth {
    * Returns link to authorize user
    *
    * @param {string} providerName Name of provider
-   * @returns {string} URL for redirect for auth
+   * @return {string} URL for redirect for auth
    *
    * @memberOf Auth
    */

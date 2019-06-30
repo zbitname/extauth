@@ -27,13 +27,13 @@ class TestAuthProvider extends OAuth2BaseProvider {
    * Exchange code to access token
    *
    * @param {string} code Code received after authorize user
-   * @returns {Promise}
+   * @return {Promise}
    *
    * @memberOf GoogleAuthProvider
    */
   exchangeCodeToAccessToken(code) {
     return new Promise((resolve, reject) => {
-      let data = {
+      const data = {
         access_token: 'test_access_token',
         expires_in: 3600,
         user_id: 3

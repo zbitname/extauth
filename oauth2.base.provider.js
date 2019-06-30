@@ -48,7 +48,7 @@ class OAuth2BaseProvider {
   /**
    * Sign in user by external provider in your app.
    *
-   * @returns {Promise|any}
+   * @return {Promise|any}
    * @memberOf OAuth2BaseProvider
    */
   signIn() {
@@ -61,7 +61,7 @@ class OAuth2BaseProvider {
    * This method help determine user is new or already existed user in your app.
    *
    * @param {boolean} v If argument is exists then this method set value, else get value.
-   * @returns {boolean}
+   * @return {boolean}
    * @memberOf OAuth2BaseProvider
    */
   isNew(v) {
@@ -75,7 +75,7 @@ class OAuth2BaseProvider {
   /**
    * Get user id. Before call this method must be set this._userId by your provider.
    *
-   * @returns {Promise}
+   * @return {Promise}
    * @memberOf OAuth2BaseProvider
    */
   getUserId() {
@@ -85,7 +85,7 @@ class OAuth2BaseProvider {
   /**
    * Get provider name.
    *
-   * @returns {string}
+   * @return {string}
    * @memberOf OAuth2BaseProvider
    */
   getProviderName() {
