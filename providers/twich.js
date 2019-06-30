@@ -2,22 +2,22 @@ const url = require('url');
 const https = require('https');
 const querystring = require('querystring');
 const OAuth2BaseProvider = require('../oauth2.base.provider');
-const ProviderError = require('./../errors/ProviderError');
-const defaultScope = ['profile'].join(' ');
-const providerName = 'google';
+const ProviderError = require('../errors/ProviderError');
+const defaultScope = ['user_read'].join('+');
+const providerName = 'twich';
 
 /**
- * Provider for google.com
+ * Provider for twitch.tv
  *
- * @class GoogleAuthProvider
+ * @class TwichAuthProvider
  * @extends {OAuth2BaseProvider}
  */
-class GoogleAuthProvider extends OAuth2BaseProvider {
+class TwichAuthProvider extends OAuth2BaseProvider {
   /**
-   * Creates an instance of GoogleAuthProvider.
+   * Creates an instance of TwichAuthProvider.
    *
    * @constructor
-   * @memberOf GoogleAuthProvider
+   * @memberOf TwichAuthProvider
    */
   constructor(...args) {
     super(...args);
@@ -31,7 +31,7 @@ class GoogleAuthProvider extends OAuth2BaseProvider {
    *
    * @param {string} code Code received after authorize user
    * @return {Promise<Object>}
-   * @memberOf GoogleAuthProvider
+   * @memberOf TwichAuthProvider
    */
   exchangeCodeToAccessToken(code) {
     const requestBody = querystring.stringify({
@@ -44,13 +44,11 @@ class GoogleAuthProvider extends OAuth2BaseProvider {
 
     return new Promise((resolve, reject) => {
       const options = {
-        hostname: 'www.googleapis.com',
+        hostname: 'id.twitch.tv',
         port: 443,
-        path: '/oauth2/v4/token',
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
+        // eslint-disable-next-line max-len
+        path: `/oauth2/token?client_id=${this._options.clientId}&client_secret=${this._options.clientSecret}&code=${code}&grant_type=authorization_code&redirect_uri=${this._options.redirectUri}`,
+        method: 'POST'
       };
 
       const req = https.request(options, res => {
@@ -90,7 +88,7 @@ class GoogleAuthProvider extends OAuth2BaseProvider {
    * Returns user id from provider
    *
    * @return {Promise<string>} User id
-   * @memberOf GoogleAuthProvider
+   * @memberOf TwichAuthProvider
    */
   async getUserId() {
     if (this._userId) {
@@ -101,12 +99,14 @@ class GoogleAuthProvider extends OAuth2BaseProvider {
       let data = '';
 
       const req = https.request({
-        hostname: 'www.googleapis.com',
-        path: '/plus/v1/people/me',
+        hostname: 'api.twitch.tv',
+        path: '/kraken/user',
         port: 443,
         method: 'GET',
         headers: {
-          'Authorization': `${this._tokenType} ${this._accessToken}`
+          'Authorization': `OAuth ${this._accessToken}`,
+          'Client-ID': this._options.clientId,
+          'Accept': 'application/vnd.twitchtv.v5+json'
         }
       }, res => {
         res.on('data', chunk => {
@@ -126,7 +126,7 @@ class GoogleAuthProvider extends OAuth2BaseProvider {
 
       req.end();
     }).then(data => {
-      this._userId = data.id;
+      this._userId = data._id;
 
       this._profileInfo = data;
 
@@ -145,7 +145,7 @@ class GoogleAuthProvider extends OAuth2BaseProvider {
    * @memberof VkAuthProvider
    */
   async getUserName() {
-    return {firstName: this._profileInfo.name.givenName, lastName: this._profileInfo.name.familyName};
+    return {firstName: this._profileInfo.name};
   }
 
   /**
@@ -154,13 +154,13 @@ class GoogleAuthProvider extends OAuth2BaseProvider {
    * @static
    * @param {Object} [options={}]
    * @return {string} URL
-   * @memberof GoogleAuthProvider
+   * @memberof TwichAuthProvider
    */
   static getAuthUrl(options = {}) {
     const authBaseUrl = {
       protocol: 'https',
-      host: 'accounts.google.com',
-      pathname: 'o/oauth2/v2/auth',
+      host: 'id.twitch.tv',
+      pathname: 'oauth2/authorize',
       query: {
         client_id: options.clientId,
         redirect_uri: options.redirectUri,
@@ -173,6 +173,6 @@ class GoogleAuthProvider extends OAuth2BaseProvider {
   }
 }
 
-GoogleAuthProvider.providerName = providerName;
+TwichAuthProvider.providerName = providerName;
 
-module.exports = GoogleAuthProvider;
+module.exports = TwichAuthProvider;

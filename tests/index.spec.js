@@ -1,5 +1,4 @@
 const test = require('ava');
-const assert = require('assert');
 const {Auth} = require('../index');
 const Provider = require('./helpers/provider');
 const db = require('./helpers/db');
@@ -38,7 +37,7 @@ auth.registerProvider(Provider, providerOptions);
 test('Auth.getAuthUrl', t => {
   const authUrl = auth.getAuthUrl(Provider.providerName);
 
-  assert.equal(typeof authUrl, 'string');
+  t.is(typeof authUrl, 'string');
 
   t.pass();
 });
@@ -46,7 +45,7 @@ test('Auth.getAuthUrl', t => {
 test('Auth.getSignInFunc', t => {
   const signInFnc = auth.getSignInFunc();
 
-  assert.equal(typeof signInFnc, 'function');
+  t.is(typeof signInFnc, 'function');
 
   t.pass();
 });
@@ -54,8 +53,8 @@ test('Auth.getSignInFunc', t => {
 test('Auth.getProvider', t => {
   const provider = auth.getProvider(Provider.providerName);
 
-  assert.equal(typeof provider, 'object');
-  assert.equal(provider instanceof Provider, true);
+  t.is(typeof provider, 'object');
+  t.is(provider instanceof Provider, true);
 
   t.pass();
 });

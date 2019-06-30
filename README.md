@@ -1,4 +1,5 @@
 # NOT FOR PRODUCTION (not yet now)
+[![Build Status](https://travis-ci.com/zbitname/extauth.svg?branch=master)](https://travis-ci.com/zbitname/extauth)
 
 # About
 This module is simpliest alternative for authorize by external providers.
@@ -6,6 +7,7 @@ This module is simpliest alternative for authorize by external providers.
 # Support auth providers
 - vk.com
 - google.com
+- twich.tv
 
 # TODO
 - Supports redirects on success login and on fail login
@@ -24,7 +26,7 @@ cd test-apps/${FRAMEWORK_NAME}
 npm start
 ```
 and go to page `http://localhost:3000/auth/${providerName}`
-where providerName = any (vk, google)
+where providerName = any (vk, google, twich)
 
 ### Automated tests
 ```bash

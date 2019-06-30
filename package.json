@@ -6,15 +6,16 @@
   "scripts": {
     "test": "ava",
     "ava": "ava",
-    "coverage": "nyc --reporter=html ava"
+    "coverage": "nyc --reporter=html ava",
+    "lint": "eslint ./"
   },
   "author": "Alexey Kheben",
   "license": "MIT",
   "devDependencies": {
-    "ava": "^0.18.2",
-    "eslint": "^3.16.1",
-    "eslint-config-google": "^0.7.1",
-    "nyc": "^10.1.2"
+    "ava": "^2.1.0",
+    "eslint": "^6.0.1",
+    "eslint-config-google": "^0.13.0",
+    "nyc": "^14.1.1"
   },
   "ava": {
     "files": [
@@ -33,6 +34,7 @@
     "authentication",
     "vk",
     "google",
+    "twich",
     "alternative",
     "passport"
   ],
@@ -43,7 +45,7 @@
   "bugs": {
     "url": "https://github.com/zbitname/extauth/issues"
   },
-  "engines" : {
+  "engines": {
     "node": ">=6.0.0"
   }
 }

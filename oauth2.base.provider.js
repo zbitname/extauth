@@ -1,4 +1,15 @@
 /**
+ * @typedef OAuth2BaseProviderOptions
+ * @property {string} clientId
+ * @property {string} clientSecret
+ * @property {string} redirectUri
+ */
+
+/**
+ * @typedef {import('./index')} Auth
+ */
+
+/**
  * Base provider
  *
  * @class OAuth2BaseProvider
@@ -7,7 +18,7 @@ class OAuth2BaseProvider {
   /**
    * Creates an instance of OAuth2BaseProvider.
    *
-   * @param {object} [options={clientId, clientSecret}]
+   * @param {OAuth2BaseProviderOptions} [options={clientId, clientSecret}]
    * @param {Auth} auth Instance of Auth class
    * @constructor
    * @memberOf OAuth2BaseProvider
@@ -92,5 +103,7 @@ class OAuth2BaseProvider {
     throw new Error('getUserName not implemented');
   }
 }
+
+/** @module OAuth2BaseProvider */
 
 module.exports = OAuth2BaseProvider;

@@ -9,8 +9,8 @@ const PROVIDER_NAME = 'vk';
 /**
  * Make GET request
  *
- * @param {string} URL
- * @returns
+ * @param {string} url
+ * @return {{}}
  */
 function getRequest(url) {
   return new Promise((resolve, reject) => {
@@ -44,13 +44,11 @@ class VkAuthProvider extends OAuth2BaseProvider {
   /**
    * Creates an instance of VkAuthProvider
    *
-   * @param {any} options
-   * @param {any} auth Instance of Auth class
    * @constructor
    * @memberOf VkAuthProvider
    */
-  constructor(options, auth) {
-    super(options, auth);
+  constructor(...args) {
+    super(...args);
 
     this._providerName = PROVIDER_NAME;
     this._profileInfo = null;
@@ -96,12 +94,13 @@ class VkAuthProvider extends OAuth2BaseProvider {
    * Maker requset to {@link https://vk.com/dev/users.get|VK dev docs} and return {@link https://vk.com/dev/objects/user|User object}
    *
    * @private
-   * @returns {Promise<Object>}
+   * @return {Promise<Object>}
    * @memberof VkAuthProvider
    */
   async _fetchProfileInfo() {
     const urlStr = this._getMethodUrl(true, 'users.get', {
       user_ids: this._userId,
+      // eslint-disable-next-line max-len
       fields: 'photo_id, verified, sex, bdate, city, country, home_town, has_photo, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, domain, has_mobile, contacts, site, education, universities, schools, status, last_seen, followers_count, common_count, occupation, nickname, relatives, relation, personal, connections, exports, wall_comments, activities, interests, music, movies, tv, books, games, about, quotes, can_post, can_see_all_posts, can_see_audio, can_write_private_message, can_send_friend_request, is_favorite, is_hidden_from_feed, timezone, screen_name, maiden_name, crop_photo, is_friend, friend_status, career, military, blacklisted, blacklisted_by_me'
     });
 
@@ -122,7 +121,7 @@ class VkAuthProvider extends OAuth2BaseProvider {
    * @property {string|null} firstName First name of user
    * @property {string|null} lastName Last name of user
    *
-   * @returns {Promise<UserName>}
+   * @return {Promise<UserName>}
    * @memberof VkAuthProvider
    */
   async getUserName() {
@@ -141,7 +140,7 @@ class VkAuthProvider extends OAuth2BaseProvider {
    * @param {Object} [options={}]
    *
    * @private
-   * @returns {Array|Object} response from VK API
+   * @return {Array|Object} response from VK API
    * @memberof VkAuthProvider
    */
   _getMethodUrl(accessTokenIsNeeded, method, options = {}) {
@@ -170,10 +169,10 @@ class VkAuthProvider extends OAuth2BaseProvider {
    *
    * @static
    * @param {Object} [options={}]
-   * @returns {string} URL
+   * @return {string} URL
    * @memberof VkAuthProvider
    */
-  static getAuthUrl (options = {}) {
+  static getAuthUrl(options = {}) {
     const authBaseUrl = {
       protocol: 'https',
       host: 'oauth.vk.com',
