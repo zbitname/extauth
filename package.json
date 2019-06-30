@@ -1,6 +1,6 @@
 {
   "name": "extauth",
-  "version": "0.1.1-alpha",
+  "version": "0.1.2-alpha",
   "description": "This module is simpliest alternative for authorize by external providers",
   "main": "index.js",
   "scripts": {
@@ -34,7 +34,7 @@
     "authentication",
     "vk",
     "google",
-    "twich",
+    "twitch",
     "alternative",
     "passport"
   ],

@@ -48,13 +48,14 @@ class OAuth2BaseProvider {
   /**
    * Sign in user by external provider in your app.
    *
+   * @param {any} state Send this in calling signIn function
    * @return {Promise|any}
    * @memberOf OAuth2BaseProvider
    */
-  signIn() {
+  signIn(state) {
     const signIn = this._auth.getSignInFunc();
 
-    return signIn.call(this);
+    return signIn.call(this, state);
   }
 
   /**

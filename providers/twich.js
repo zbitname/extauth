@@ -4,20 +4,20 @@ const querystring = require('querystring');
 const OAuth2BaseProvider = require('../oauth2.base.provider');
 const ProviderError = require('../errors/ProviderError');
 const defaultScope = ['user_read'].join('+');
-const providerName = 'twich';
+const providerName = 'twitch';
 
 /**
  * Provider for twitch.tv
  *
- * @class TwichAuthProvider
+ * @class TwitchAuthProvider
  * @extends {OAuth2BaseProvider}
  */
-class TwichAuthProvider extends OAuth2BaseProvider {
+class TwitchAuthProvider extends OAuth2BaseProvider {
   /**
-   * Creates an instance of TwichAuthProvider.
+   * Creates an instance of TwitchAuthProvider.
    *
    * @constructor
-   * @memberOf TwichAuthProvider
+   * @memberOf TwitchAuthProvider
    */
   constructor(...args) {
     super(...args);
@@ -31,7 +31,7 @@ class TwichAuthProvider extends OAuth2BaseProvider {
    *
    * @param {string} code Code received after authorize user
    * @return {Promise<Object>}
-   * @memberOf TwichAuthProvider
+   * @memberOf TwitchAuthProvider
    */
   exchangeCodeToAccessToken(code) {
     const requestBody = querystring.stringify({
@@ -88,7 +88,7 @@ class TwichAuthProvider extends OAuth2BaseProvider {
    * Returns user id from provider
    *
    * @return {Promise<string>} User id
-   * @memberOf TwichAuthProvider
+   * @memberOf TwitchAuthProvider
    */
   async getUserId() {
     if (this._userId) {
@@ -154,7 +154,7 @@ class TwichAuthProvider extends OAuth2BaseProvider {
    * @static
    * @param {Object} [options={}]
    * @return {string} URL
-   * @memberof TwichAuthProvider
+   * @memberof TwitchAuthProvider
    */
   static getAuthUrl(options = {}) {
     const authBaseUrl = {
@@ -173,6 +173,6 @@ class TwichAuthProvider extends OAuth2BaseProvider {
   }
 }
 
-TwichAuthProvider.providerName = providerName;
+TwitchAuthProvider.providerName = providerName;
 
-module.exports = TwichAuthProvider;
+module.exports = TwitchAuthProvider;
