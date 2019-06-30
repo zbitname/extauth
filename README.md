@@ -1,4 +1,5 @@
 # NOT FOR PRODUCTION (not yet now)
+[![Build Status](https://travis-ci.com/zbitname/extauth.svg?branch=master)](https://travis-ci.com/zbitname/extauth)
 
 # About
 This module is simpliest alternative for authorize by external providers.
