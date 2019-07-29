@@ -3,7 +3,7 @@ const https = require('https');
 const querystring = require('querystring');
 const OAuth2BaseProvider = require('../oauth2.base.provider');
 const ProviderError = require('../errors/ProviderError');
-const defaultScope = ['user_read'].join('+');
+const defaultScope = 'user:read:email';
 const providerName = 'twitch';
 
 /**
@@ -100,12 +100,12 @@ class TwitchAuthProvider extends OAuth2BaseProvider {
 
       const req = https.request({
         hostname: 'api.twitch.tv',
-        path: '/kraken/user',
+        path: '/helix/users',
         port: 443,
         method: 'GET',
         headers: {
-          'Authorization': `OAuth ${this._accessToken}`,
-          'Client-ID': this._options.clientId,
+          'Authorization': `Bearer ${this._accessToken}`,
+          // 'Client-ID': this._options.clientId,
           'Accept': 'application/vnd.twitchtv.v5+json'
         }
       }, res => {
@@ -125,10 +125,9 @@ class TwitchAuthProvider extends OAuth2BaseProvider {
       });
 
       req.end();
-    }).then(data => {
-      this._userId = data._id;
-
-      this._profileInfo = data;
+    }).then(({data}) => {
+      this._profileInfo = data[0];
+      this._userId = this._profileInfo.id;
 
       return this._userId;
     });
@@ -139,13 +138,12 @@ class TwitchAuthProvider extends OAuth2BaseProvider {
    *
    * @typedef {Object} UserName
    * @property {string|null} firstName First name of user
-   * @property {string|null} lastName Last name of user
    *
    * @return {Promise<UserName>}
    * @memberof VkAuthProvider
    */
   async getUserName() {
-    return {firstName: this._profileInfo.name};
+    return {firstName: this._profileInfo.display_name};
   }
 
   /**
