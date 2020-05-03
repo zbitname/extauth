@@ -1,34 +1,35 @@
-const Koa = require('koa');
-const app = new Koa();
-const route = require('koa-route');
-const {Auth} = require('../../');
-const VkAuthProvider = require('../../providers/vk');
-const GoogleAuthProvider = require('../../providers/google');
-const TwitchAuthProvider = require('../../providers/twitch');
-const db = require('../../tests/helpers/db');
-const config = require('../config.json');
+import * as Koa from 'koa';
+import * as route from 'koa-route';
+import {Auth} from '../..';
+import {VkAuthProvider} from '../../src/providers/vk';
+import {GoogleAuthProvider} from '../../src/providers/google';
+import {TwitchAuthProvider} from '../../src/providers/twitch';
+import * as db from '../../tests/helpers/db';
+import * as config from '../config';
 
+const app = new Koa();
 const auth = new Auth();
+
 // describe common sign in method
 auth.setSignInFunc(async function() {
   const User = db.collection('users');
-  const providerName = this.getProviderName(); // eslint-disable-line no-invalid-this
+  const providerName = this.getProviderName();
 
   const condition = {
     provider: providerName,
-    userId: await this.getUserId() // eslint-disable-line no-invalid-this
+    userId: await this.getUserId()
   };
 
   let user = User.findOne(condition);
 
   if (!user) {
-    this.isNew(true); // eslint-disable-line no-invalid-this
+    this.isNew(true);
 
-    const name = await this.getUserName(); // eslint-disable-line no-invalid-this
+    const name = await this.getUserName();
 
-    user = User.create(Object.assign({name}, condition));
+    user = User.create({name, ...condition});
   } else {
-    this.isNew(false); // eslint-disable-line no-invalid-this
+    this.isNew(false);
   }
 
   return user;
@@ -41,8 +42,8 @@ auth.registerProvider(TwitchAuthProvider, config.twitch);
 
 // responses
 // methods for redirect to auth page
-const handleAuthorize = providerName => {
-  return async ctx => {
+const handleAuthorize = (providerName: string) => {
+  return async (ctx: any) => {
     const url = auth.getAuthUrl(providerName);
 
     ctx.res.writeHead(302, {
@@ -56,8 +57,8 @@ app.use(route.get('/auth/google', handleAuthorize('google')));
 app.use(route.get('/auth/twitch', handleAuthorize('twitch')));
 
 // methods for callback with code
-const handleCallback = providerName => {
-  return async ctx => {
+const handleCallback = (providerName: string) => {
+  return async (ctx: any) => {
     const provider = auth.getProvider(providerName);
 
     try {

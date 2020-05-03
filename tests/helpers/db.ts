@@ -4,15 +4,8 @@
  * @class Collection
  */
 class Collection {
-  /**
-   * Creates an instance of Collection.
-   *
-   * @memberof Collection
-   */
-  constructor() {
-    this.collection = [];
-    this.id = 1;
-  }
+  public collection: any[] = [];
+  public id = 1;
 
   /**
    * Insert any object to store
@@ -21,7 +14,7 @@ class Collection {
    * @return {{}}
    * @memberof Collection
    */
-  create(data) {
+  create(data: any) {
     const _data = Object.assign({}, data);
 
     if (!_data.id) {
@@ -41,7 +34,7 @@ class Collection {
    * @return {{}}
    * @memberof Collection
    */
-  findOne(conditions) {
+  findOne(conditions: any) {
     return this.collection.find(item => {
       return Object.keys(conditions).every(key => {
         return item[key] === conditions[key];
@@ -50,11 +43,10 @@ class Collection {
   }
 }
 
-const collections = {};
-collections.users = new Collection();
+const collections = {
+  users: new Collection()
+};
 
-module.exports = {
-  collection(name) {
-    return collections[name];
-  }
+export const collection = (name: 'users') => {
+  return collections[name];
 };

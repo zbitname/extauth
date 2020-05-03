@@ -1,4 +1,0 @@
-{
-  "include": ["index.js", "oauth2.base.provider.js"],
-  "exclude": ["**/tests/**", "**/*.spec.js", "**/node_modules/**"]
-}
