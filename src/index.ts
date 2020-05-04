@@ -13,7 +13,7 @@ export class Auth {
     this.providers[Provider.providerName] = {Provider, options};
   }
 
-  setSignInFunc(fnc: () => any) {
+  setSignInFunc(fnc: (state?: any) => any) {
     this.signInFnc = fnc;
   }
 
